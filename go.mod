@@ -11,7 +11,7 @@ require (
 	github.com/PuerkitoBio/rehttp v1.1.0
 	github.com/aws/aws-sdk-go v1.44.89
 	github.com/cheynewallace/tabby v1.1.1
-	github.com/docker/docker v20.10.12+incompatible
+	github.com/docker/docker v20.10.24+incompatible
 	github.com/docker/go-connections v0.4.0
 	github.com/dustin/go-humanize v1.0.0
 	github.com/evergreen-ci/birch v0.0.0-20220401151432-c792c3d8e0eb
