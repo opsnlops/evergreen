@@ -28,15 +28,18 @@ A Distributed Continuous Integration System from MongoDB
 %setup -n %{name}-%{_git_hash}
 
 %build
+/root/go/bin/bom generate --format json --name %{name} --output %{name}-%{_git_hash}.spdx.json .
 make
 
 %install
 install -D -m 755 clients/%{_go_os}_%{_go_arch}/%{name} %{buildroot}%{_bindir}/%{name}
+install -D -m 444 %{name}-%{_git_hash}.spdx.json %{buildroot}/var/lib/db/sbom/%{name}-%{_git_hash}.spdx.json
 
 
 %files
 %license LICENSE.md
 %{_bindir}/%{name}
+/var/lib/db/sbom/%{name}-%{_git_hash}.spdx.json
 
 %changelog
 * Wed May 10 2023 April White <april.white@mongodb.com> - 1.0-1

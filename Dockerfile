@@ -35,6 +35,9 @@ RUN dnf update && dnf install -y rpm-build && dnf builddep -y evergreen.spec
 #RUN tar -C /usr/local -xzf /go${GOVERSION}.${GOOS}-${GOARCH}.tar.gz
 #ENV PATH=/usr/local/go/bin:${PATH}
 
+# Install bom so we can make an SPDX file
+RUN go install sigs.k8s.io/bom/cmd/bom@latest
+
 # Compile evergreen
 RUN rpmbuild -ba \
     --define "_git_hash ${GIT_HASH}" \
@@ -43,7 +46,7 @@ RUN rpmbuild -ba \
     --define "_go_os ${GOOS}" \
     evergreen.spec
 
-# rpmbuild -ba --define "_git_hash f2e29824d" --define "_topdir /build" --define "_go_arch arm64" --define "_go_os linux" evergreen.spec
+# rpmbuild -ba --define "_git_hash 52189baf6" --define "_topdir /build" --define "_go_arch arm64" --define "_go_os linux" evergreen.spec
 
 
 # Create a minimal UBI image
